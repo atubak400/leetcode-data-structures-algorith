@@ -88,3 +88,63 @@ with distinct elements, commonly called Set.
 Task = Solution()
 print("3a. ",Task.longestCommonPrefix(["flower","flow","flight"]))
 print("3b. ",Task.longestCommonPrefix(["dog","racecar","car"]))
+
+
+"""
+4. Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', 
+determine if the input string is valid.
+
+An input string is valid if:
+-Open brackets must be closed by the same type of brackets.
+-Open brackets must be closed in the correct order.
+
+Example 1:
+
+Input: s = "()"
+Output: true
+Example 2:
+
+Input: s = "()[]{}"
+Output: true
+Example 3:
+
+Input: s = "(]"
+Output: false
+
+"""
+
+class Solution:
+    def isValid(self, s):
+        if s == "":
+            return True
+        if len(s) < 2:
+            return False
+
+        pair_brkts = {
+            "{" : "}",
+            "(" : ")",
+            "[" : "]"
+            }
+        stack = []
+
+        for i in s:
+            if i in pair_brkts:
+                stack.append(i)                                #stack i(forward facing brackets that also exists as keys in our pair_brkts dictionary)
+                #print("forward facing brackets", stack)       #to see the contents of your stacked list 
+            else:
+                if len(stack) == 0 or pair_brkts[stack.pop()] != i:   #if stack list is empty or the value pair of last 
+                                                                        #list item isnt same, return False, otherwise break out of loop
+                    #print("backward facing brackets", stack)        #print to see whats left of your list after 
+                                                                    #looping is over for all your i(i.e brackets)
+                    return False
+        if len(stack) > 0:                                          #if stack list is not empty at this point, return False, else return True
+            return False
+        return True
+
+ 
+        
+
+Task = Solution()
+print("4a. ", Task.isValid("({[()]})"))
+print("4b. ", Task.isValid("()[]{}"))
+print("4c. ", Task.isValid("(]"))

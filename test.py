@@ -1,7 +1,7 @@
-strs = ["adoliscent", "adolize", "adoluminia"]
+s = ["a","b","c","d","r","e","f","g","h","i"]
 
-print(list(zip(*strs)))
+print(s.pop())
+print(s.pop())
+print(s.pop())
+print(s.pop())
 
-for s in zip(*strs):
-    print(s)
-    print(set(s))
